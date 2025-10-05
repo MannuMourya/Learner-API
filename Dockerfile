@@ -17,7 +17,7 @@ COPY app ./app
 
 # Data dir for uploads
 RUN mkdir -p /data
-VOLUME ["/data"]
+# VOLUME ["/data"]
 
 ENV HOST=0.0.0.0 PORT=8000 WORKERS=2 LOG_LEVEL=info
 
