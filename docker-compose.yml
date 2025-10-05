@@ -1,0 +1,33 @@
+services:
+  api:
+    build: .
+    container_name: learner_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: learner_db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-learner_api}
+      POSTGRES_USER: ${POSTGRES_USER:-learner}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-learnerpwd}
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-learner} -d ${POSTGRES_DB:-learner_api} || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dbdata:
