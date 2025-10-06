@@ -1,5 +1,8 @@
 # Learner API Starter (FastAPI + Docker)
 
+[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-Contributions%20welcome-ff4081.svg)](https://hacktoberfest.com/)
+
+
 A **self-contained, production-style API** you can run locally with **one Docker command** to learn:
 - API design (CRUD, auth, uploads, background tasks, websockets)
 - Software testing & inspection (safe-by-default)
